@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>ti amuuuuuuuu</title>
+
+    <style>
+        body{
+            margin:0;
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:black;
+            overflow:hidden;
+        }
+
+        svg{
+            width:600px;
+            height:600px;
+            animation: beat 2s infinite ease-in-out 3s;
+        }
+
+        line{
+            stroke: #dd8484;
+            stroke-width:2;
+            stroke-linecap:round;
+            stroke-dasharray:400;
+            stroke-dashoffset:400;
+            animation: draw 0.5ms ease forwards;
+        }
+
+        /* Dibuja las líneas */
+        @keyframes draw{
+            to{
+                stroke-dashoffset:0;
+            }
+        }
+
+        /* Latido después de dibujarse */
+        @keyframes beat{
+            0%,100%{ transform: scale(1); }
+            50%{ transform: scale(1.08); }
+        }
+    </style>
+</head>
+<body>
+
+<svg viewBox="0 0 300 300" id="heart"></svg>
+
+<script>
+    const svg = document.getElementById("heart");
+
+    const centerX = 150;
+    const centerY = 150;
+    const lines = 120; // cantidad de rayos
+
+    for(let i=0; i<lines; i++){
+
+        const angle = (Math.PI * 2 / lines) * i;
+
+        // Fórmula paramétrica del corazón
+        const t = angle;
+        const x = 150 + 100 * Math.pow(Math.sin(t),3);
+        const y = 150 - (80 * Math.cos(t)
+            - 30 * Math.cos(2*t)
+            - 10 * Math.cos(3*t)
+            - 5 * Math.cos(4*t));
+
+        const line = document.createElementNS("http://www.w3.org/2000/svg","line");
+
+        line.setAttribute("x1", centerX);
+        line.setAttribute("y1", centerY);
+        line.setAttribute("x2", x);
+        line.setAttribute("y2", y);
+
+        line.style.animationDelay = (i * 0.01) + "s";
+
+        svg.appendChild(line);
+    }
+</script>
+
+</body>
+</html>
