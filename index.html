@@ -22,12 +22,18 @@
         }
 
         line{
-            stroke: #dd8484;
-            stroke-width:2;
+            stroke:#ff2bd6;          /* Color neón rosado */
+            stroke-width:1;          /* Más delgadas */
             stroke-linecap:round;
+
             stroke-dasharray:400;
             stroke-dashoffset:400;
-            animation: draw 0.5ms ease forwards;
+            animation: draw 2.5s ease forwards;
+
+            /* EFECTO NEÓN */
+            filter: drop-shadow(0 0 4px #cf30b1)
+            drop-shadow(0 0 8px #ff2bd6)
+            drop-shadow(0 0 15px #a625a6);
         }
 
         /* Dibuja las líneas */
